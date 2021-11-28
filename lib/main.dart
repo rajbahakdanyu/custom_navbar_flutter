@@ -109,80 +109,47 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          IconButton(
-                            icon: Icon(
-                              Icons.home,
-                              color: currentIndex == 0
-                                  ? Colors.blue
-                                  : Colors.grey.shade400,
-                            ),
-                            onPressed: () {
-                              setBottomBarIndex(0);
-                            },
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.restaurant_menu,
-                              color: currentIndex == 1
-                                  ? Colors.blue
-                                  : Colors.grey.shade400,
-                            ),
-                            onPressed: () {
-                              setBottomBarIndex(1);
-                            },
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                          ),
+                          navBarItem(0, 'Home', Icons.home),
+                          navBarItem(1, 'Dinner', Icons.restaurant_menu),
                           Container(
                             width: size.width * 0.20,
                           ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.bookmark,
-                              color: currentIndex == 2
-                                  ? Colors.blue
-                                  : Colors.grey.shade400,
-                            ),
-                            onPressed: () {
-                              setBottomBarIndex(2);
-                            },
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                icon: Icon(
-                                  Icons.notifications,
-                                  color: currentIndex == 3
-                                      ? Colors.blue
-                                      : Colors.grey.shade400,
-                                ),
-                                onPressed: () {
-                                  setBottomBarIndex(3);
-                                },
-                                splashColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                              ),
-                              Text(
-                                'Hello',
-                                style: TextStyle(
-                                  color: currentIndex == 3
-                                      ? Colors.blue
-                                      : Colors.grey.shade400,
-                                ),
-                              ),
-                            ],
-                          ),
+                          navBarItem(2, 'Bookmark', Icons.bookmark),
+                          navBarItem(3, 'About', Icons.notifications),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget navBarItem(int index, String title, IconData icon) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            icon: Icon(
+              icon,
+              color: currentIndex == index ? Colors.blue : Colors.grey.shade400,
+            ),
+            onPressed: () {
+              setBottomBarIndex(index);
+            },
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+          ),
+          Text(
+            title,
+            style: TextStyle(
+              color: currentIndex == index ? Colors.blue : Colors.grey.shade400,
             ),
           ),
         ],
@@ -199,16 +166,16 @@ class BNBCustomPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     Path path = Path();
-    path.moveTo(0, 10);
-    path.lineTo(size.width * 0.35, 10);
-    path.quadraticBezierTo(size.width * 0.40, 10, size.width * 0.40, 20);
+    path.moveTo(0, 0);
+    path.lineTo(size.width * 0.35, 0);
+    path.quadraticBezierTo(size.width * 0.40, 0, size.width * 0.40, 20);
     path.arcToPoint(
       Offset(size.width * 0.60, 20),
       radius: const Radius.circular(20.0),
       clockwise: false,
     );
-    path.quadraticBezierTo(size.width * 0.60, 10, size.width * 0.65, 10);
-    path.quadraticBezierTo(size.width, 10, size.width, 10);
+    path.quadraticBezierTo(size.width * 0.60, 0, size.width * 0.65, 0);
+    path.quadraticBezierTo(size.width, 0, size.width, 0);
     path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
     canvas.drawPath(path, paint);
