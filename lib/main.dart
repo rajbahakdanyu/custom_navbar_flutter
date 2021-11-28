@@ -99,7 +99,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           backgroundColor: Colors.blue,
                           child: const Icon(Icons.shopping_basket),
                           elevation: 0.1,
-                          onPressed: () {},
+                          onPressed: () {
+                            setBottomBarIndex(2);
+                          },
                         ),
                       ),
                     ),
@@ -113,9 +115,18 @@ class _MyHomePageState extends State<MyHomePage> {
                           navBarItem(1, 'Dinner', Icons.restaurant_menu),
                           Container(
                             width: size.width * 0.20,
+                            padding: const EdgeInsets.only(left: 25, top: 35),
+                            child: Text(
+                              'Basket',
+                              style: TextStyle(
+                                color: currentIndex == 2
+                                    ? Colors.blue
+                                    : Colors.grey.shade400,
+                              ),
+                            ),
                           ),
-                          navBarItem(2, 'Bookmark', Icons.bookmark),
-                          navBarItem(3, 'About', Icons.notifications),
+                          navBarItem(3, 'Bookmark', Icons.bookmark),
+                          navBarItem(4, 'About', Icons.notifications),
                         ],
                       ),
                     ),
@@ -162,7 +173,7 @@ class BNBCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = Colors.green
+      ..color = Colors.white
       ..style = PaintingStyle.fill;
 
     Path path = Path();
@@ -170,7 +181,7 @@ class BNBCustomPainter extends CustomPainter {
     path.lineTo(size.width * 0.35, 0);
     path.quadraticBezierTo(size.width * 0.40, 0, size.width * 0.40, 10);
     path.arcToPoint(
-      Offset(size.width * 0.60, 10),
+      Offset(size.width * 0.60, 5),
       radius: const Radius.circular(10.0),
       clockwise: false,
     );
