@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ScrollToHideButton(
                       controller: controller,
                       child: Center(
-                        heightFactor: 0.6,
+                        heightFactor: 0.2,
                         child: FloatingActionButton(
                           backgroundColor: Colors.blue,
                           child: const Icon(Icons.shopping_basket),
@@ -162,16 +162,16 @@ class BNBCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = Colors.white
+      ..color = Colors.green
       ..style = PaintingStyle.fill;
 
     Path path = Path();
     path.moveTo(0, 0);
     path.lineTo(size.width * 0.35, 0);
-    path.quadraticBezierTo(size.width * 0.40, 0, size.width * 0.40, 20);
+    path.quadraticBezierTo(size.width * 0.40, 0, size.width * 0.40, 10);
     path.arcToPoint(
-      Offset(size.width * 0.60, 20),
-      radius: const Radius.circular(20.0),
+      Offset(size.width * 0.60, 10),
+      radius: const Radius.circular(10.0),
       clockwise: false,
     );
     path.quadraticBezierTo(size.width * 0.60, 0, size.width * 0.65, 0);
