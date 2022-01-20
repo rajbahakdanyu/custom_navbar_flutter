@@ -17,14 +17,25 @@ jobs:
               with:
                   channel: "stable"
 
-            - run: flutter pub get
+            - name: Pub get
+              run: flutter pub get
 
-            - run: flutter clean
+            - name: Flutter Clean
+              run: flutter clean
 
-            - run: flutter build apk
+            - name: Building apk
+              run: flutter build apk
 
-            - uses: actions/upload-artifact@v2.2.0
+            - name: Renaming apk
+              working-directory: ./build/app/outputs/flutter-apk/
+              run: mv app-release.apk custom_navbar.apk
+
+            - name: Pushing changes
+              uses: GuillaumeFalourd/git-commit-push@v1.3
+
+            - name: moving apk to artifact
+              uses: actions/upload-artifact@v2.2.0
               with:
                   name: apk
-                  path: ./build/app/outputs/flutter-apk/app-release.apk
+                  path: ./build/app/outputs/flutter-apk/custom_navbar.apk
                   if-no-files-found: error
