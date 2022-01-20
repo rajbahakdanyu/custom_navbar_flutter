@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 import '/scroll_to_hide.dart';
 import '/scroll_to_hide_button.dart';
@@ -82,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
             left: 0,
             child: ScrollToHide(
               controller: controller,
-              child: Container(
+              child: SizedBox(
                 width: size.width,
                 height: 80,
                 child: Stack(
@@ -105,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       width: size.width,
                       height: 80,
                       child: Row(
